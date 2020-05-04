@@ -9,16 +9,6 @@ export default function App() {
     setModalVisible(!isModalVisible);
   };
 
-  useEffect(() => {
-    document.body.addEventListener("keydown", event => {
-      if (event.key === "Escape") {
-        // escape
-        event.preventDefault();
-        setModalVisible(false);
-      }
-    });
-  }, []);
-
   return (
     <div className="App">
       <h1>Hello CodeSandbox</h1>
@@ -26,7 +16,7 @@ export default function App() {
       <button onClick={toggleModal}>Open modal</button>
       {isModalVisible && (
         <Modal toggleModal={toggleModal}>
-          <h1 className="title">My awesome modal</h1>}
+          <h1 className="title">My awesome modal</h1>
           <div>
             <h3 className="description-header">Description</h3>
             <p className="description">

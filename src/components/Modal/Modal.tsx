@@ -1,19 +1,42 @@
-import React, { FC } from 'react';
-import './Modal.scss';
-
+import React, { FC, useCallback } from "react";
+import "./Modal.scss";
 
 interface ModalProps {
-	toggleModal: () => void
-	className?: string
+  toggleModal: () => void;
+  className?: string;
 }
 
-
 const Modal: FC<ModalProps> = ({ toggleModal, className, children }) => {
-	return (<div onClick={toggleModal} className={'parent-modal'}>
-			<div onClick={event => {event.stopPropagation();}} className={`modal ${className}`}>
-				{children}
-			</div>
-		</div>
-	);
+  const modalRef = useCallback(inputElement => {
+    if (inputElement) {
+      inputElement.focus();
+    }
+  }, []);
+
+  const closeOnEscape = (e: any) => {
+    if (e.key === "Escape") {
+      toggleModal();
+    }
+  };
+
+  return (
+    <div
+      className={"parent-modal"}
+      tabIndex={0}
+      ref={modalRef}
+      onFocus={() => console.log("focus")}
+      onClick={toggleModal}
+      onKeyDown={closeOnEscape}
+    >
+      <div
+        className={`modal ${className}`}
+        onClick={event => {
+          event.stopPropagation();
+        }}
+      >
+        {children}
+      </div>
+    </div>
+  );
 };
 export { Modal };
