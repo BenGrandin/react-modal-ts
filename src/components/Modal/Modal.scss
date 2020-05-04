@@ -1,0 +1,36 @@
+.parent-modal {
+  display: flex;
+  justify-content: center;
+
+  position: absolute;
+  overflow: scroll;
+  z-index: 999;
+  top: 0;
+  width: 100%;
+  bottom: 0;
+
+  background-color: rgba(169, 169, 169, 0.68);
+
+
+  .modal {
+
+    $width: 768px;
+    position: relative;
+    overflow: scroll;
+    z-index: 1000;
+    height: fit-content;
+    width: $width;
+    min-width: 300px;
+    min-height: 70%;
+    margin: 48px 0 80px;
+    padding: 1rem;
+
+    background-color: cornsilk;
+
+    @media only screen and (max-width: $width) {
+      width: 100%;
+      margin: 36px 8px;
+
+    }
+  }
+}
